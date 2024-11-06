@@ -25,8 +25,7 @@ public class PlayerBehaviour : MonoBehaviour
         horizontal *= Time.deltaTime;
         forward *= Time.deltaTime;
 
-        // // transform.Translate(forward, 0, horizontal, Space.World);
-        // car.GetComponent<Rigidbody>().AddForce(new Vector3(forward, 0, horizontal), ForceMode.Impulse);
+        car.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, horizontal), ForceMode.Impulse);
 
         if (horizontal != 0)
         {

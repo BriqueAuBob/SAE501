@@ -23,7 +23,7 @@ public class SectionTrigger : MonoBehaviour
             }
 
             sections.Add(
-                Instantiate(roadSection, new Vector3(2, 0, 0), Quaternion.identity)
+                Instantiate(roadSection, new Vector3(50, 0, 0), Quaternion.identity)
             );
         }
     }

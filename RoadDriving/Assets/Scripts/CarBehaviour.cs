@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CarBehaviour : MonoBehaviour
 {
-    public float speed = 5.0f;
+    public float speed = -5.0f;
 
     void Start()
     {
-        speed = Random.Range(4.0f, 6.0f);
+        speed = Random.Range(-4.0f, -6.0f);
         GetComponent<Renderer>().material.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
     }
 
