@@ -5,3 +5,15 @@
 body {
   background-color: #f5f5f5;
 }
+
+.scale-enter-active,
+.scale-leave-active {
+  transition: all 0.5s ease;
+  max-height: 1000px;
+}
+
+.scale-enter-from,
+.scale-leave-to {
+  opacity: 0;
+  max-height: 0px;
+}

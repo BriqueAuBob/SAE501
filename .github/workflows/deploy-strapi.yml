@@ -1,0 +1,47 @@
+name: Deploy Strapi to VPS
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build Strapi for production
+        env:
+          NODE_ENV: production
+        run: yarn build
+
+      - name: Add SSH key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
+
+      - name: Transfer files to VPS
+        run: |
+          rsync -avz --delete-after \
+          -e "ssh -o StrictHostKeyChecking=no" \
+          ./ ${VPS_USER}@${{ secrets.VPS_IP }}:/var/www/strapi-project
+
+      - name: Install dependencies on VPS
+        run: |
+          ssh -o StrictHostKeyChecking=no ${VPS_USER}@${{ secrets.VPS_IP }} << 'EOF'
+          cd /var/www/strapi-project
+          yarn install --production
+EOF
+
+      - name: Restart Strapi service on VPS
+        run: |
+          ssh -o StrictHostKeyChecking=no ${VPS_USER}@${{ secrets.VPS_IP }} << 'EOF'
+          pm2 restart strapi || pm2 start yarn --name strapi -- start
+          pm2 save
+EOF

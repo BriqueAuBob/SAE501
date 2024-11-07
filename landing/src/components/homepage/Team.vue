@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import TeamMember from "@/components/TeamMember.vue";
+import TeamMember from "@/components/global/TeamMember.vue";
 import Brandon from "@/assets/images/team/brandon.jpeg";
 
 const team = [
   {
     name: "Brandon Clément",
-    role: "Développeur",
+    role: "Développeur et Game Designer",
     image: Brandon,
   },
 ];
