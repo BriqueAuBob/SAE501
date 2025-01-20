@@ -21,12 +21,11 @@ const generateCrud = (name, app, fields) => {
         name +
         " (" +
         fields.join(", ") +
-        " VALUES (" +
+        ") VALUES (" +
         fields.map(() => "?").join(", ") +
         ")",
       fields.map((field) => body[field]),
       (err) => {
-        console.log("err", err);
         res.json({ status: "ok" });
       }
     );
