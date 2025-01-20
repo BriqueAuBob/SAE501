@@ -16,9 +16,6 @@ const generateCrud = (name, app, fields) => {
 
     const body = req.body;
 
-    console.log(body);
-    console.log(db);
-
     db.run(
       "INSERT INTO " +
         name +
@@ -29,6 +26,7 @@ const generateCrud = (name, app, fields) => {
         ")",
       fields.map((field) => body[field]),
       (err) => {
+        console.log("err", err);
         res.json({ status: "ok" });
       }
     );
