@@ -7,6 +7,6 @@ const { data: news } = useNews();
 
 <template>
   <div class="flex flex-col gap-2">
-    <News v-for="n in news" />
+    <News v-for="n in news" :news="n" />
   </div>
 </template>
