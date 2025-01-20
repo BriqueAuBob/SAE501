@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { News } from "@/types/news";
+import { PropType } from "vue";
 
 defineProps({
   news: {
