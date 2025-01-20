@@ -1,14 +1,7 @@
 <script setup lang="ts">
 import TeamMember from "@/components/global/TeamMember.vue";
-import Brandon from "@/assets/images/team/brandon.jpeg";
 
-const team = [
-  {
-    name: "Brandon Clément",
-    role: "Développeur et Game Designer",
-    image: Brandon,
-  },
-];
+const { data: team } = useNews();
 </script>
 
 <template>
