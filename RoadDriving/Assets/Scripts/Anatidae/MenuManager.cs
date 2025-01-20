@@ -16,8 +16,8 @@ public class MenuManager : MonoBehaviour
 
     void Update()
     {
-        if (heldQuitTimer >= HeldQuitTime || afkTimer >= AfkTime) {
-            BackToMenu();
+        if (heldQuitTimer >= HeldQuitTime || afkTimer >= AfkTime) { 
+            Application.Quit();
         }
 
         if (Input.GetButton("Coin"))
@@ -39,6 +39,12 @@ public class MenuManager : MonoBehaviour
 
     public void OnApplicationQuit()
     {
-        BackToMenu();
+        try {
+            BackToMenu();
+        } catch {
+            Debug.Log("BackToMenu not found");
+            string url = "http://localhost:3000";
+            Application.ExternalEval("window.open('" + url + "','_self')");
+        }
     }
 }

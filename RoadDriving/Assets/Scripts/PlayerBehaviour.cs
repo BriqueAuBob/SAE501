@@ -20,7 +20,13 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Update()
     {
-        float horizontal = (-Input.GetAxis("Horizontal")) * speed;
+        float axis = -Input.GetAxis("P1_Horizontal");
+        if(axis <= 0.1 && axis >= -0.1)
+        {
+            axis = 0;
+        }
+
+        float horizontal = axis * speed;
         horizontal *= Time.deltaTime;
 
         car.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, horizontal), ForceMode.Impulse);
