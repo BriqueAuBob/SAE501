@@ -21,6 +21,18 @@ db.serialize(() => {
       );
     }
   );
+
+  // check if image column exists
+  db.all("PRAGMA table_info(members)", (err, rows) => {
+    if (rows.some((row) => row.name === "image")) {
+      return;
+    }
+    db.run("ALTER TABLE members ADD COLUMN image TEXT", (err) => {
+      if (err) {
+        console.log(err);
+      }
+    });
+  });
 });
 
 module.exports = db;

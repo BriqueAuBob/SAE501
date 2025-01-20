@@ -12,7 +12,7 @@ app.use((req, res, next) => {
   next();
 });
 
-generateCrud("members", app, ["name", "role"]);
+generateCrud("members", app, ["name", "role", "image"]);
 generateCrud("news", app, ["title", "description", "content", "date"]);
 
 app.listen(process.env.PORT, () => {
