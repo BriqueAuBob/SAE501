@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import TeamMember from "@/components/global/TeamMember.vue";
+import useTeam from "@/composables/useTeam";
 
-const { data: team } = useNews();
+const { data: team } = useTeam();
 </script>
 
 <template>
