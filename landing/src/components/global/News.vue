@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import type { News } from "@/types/news";
+
 defineProps({
   news: {
-    type: Object,
+    type: Object as PropType<News>,
+    required: true,
   },
 });
 </script>

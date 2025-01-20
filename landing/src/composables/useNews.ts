@@ -1,11 +1,5 @@
-import useFetch from "./useFEtch";
-
-type News = {
-  title: string;
-  description: string;
-  content: string;
-  date: string;
-};
+import useFetch from "./useFetch";
+import type { News } from "@/types/news";
 
 export default function useNews() {
   const { data } = useFetch<News[]>("/news");
