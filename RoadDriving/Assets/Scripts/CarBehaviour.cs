@@ -25,7 +25,7 @@ public class CarBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            GameBehaviour.RestartGame();
         }
     }
 }

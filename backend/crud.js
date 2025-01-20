@@ -16,6 +16,9 @@ const generateCrud = (name, app, fields) => {
 
     const body = req.body;
 
+    console.log(body);
+    console.log(db);
+
     db.run(
       "INSERT INTO " +
         name +

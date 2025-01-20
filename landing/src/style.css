@@ -3,8 +3,33 @@
 @tailwind utilities;
 
 body {
-  background-color: #f5f5f5;
+  /* background-image: url(./road.jpg);
+  background-size: 128px 128px;
+  background-repeat: repeat;
+  color: white; */
 }
+
+/* body::before,
+body::after {
+  content: "";
+  background: white;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 16px;
+}
+
+body::before {
+  left: 0;
+}
+
+body::after {
+  right: 0;
+}
+
+.line {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='white' stroke-width='8' stroke-dasharray='16%2c 30' stroke-dashoffset='16' stroke-linecap='square'/%3e%3c/svg%3e");
+} */
 
 .scale-enter-active,
 .scale-leave-active {

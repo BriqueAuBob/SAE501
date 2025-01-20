@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1206165784977280705}
   - component: {fileID: 4636185057557055445}
   - component: {fileID: 6517097494653744432}
+  - component: {fileID: 7078343437398156174}
   m_Layer: 0
   m_Name: Road_Section
   m_TagString: Untagged
@@ -124,6 +125,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: -10
+--- !u!114 &7078343437398156174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109050525313267055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d15735f386104aceb39ead95ed87ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carsGroup:
+  - {fileID: 8686732436099103423, guid: 47ad963030bdd4051a18708760488faa, type: 3}
+  - {fileID: 7315658356033382567, guid: a3b3afc0d8275415ea709af0ff93b823, type: 3}
+  - {fileID: 1740922412439015887, guid: dfc2c0a9d6583467689fcbb2ec02a99f, type: 3}
+  - {fileID: 7082410923498380879, guid: ee7db2702cd074fd99a70447df75cc9f, type: 3}
+  - {fileID: 4885534259118055870, guid: b2ad31fc01c9e4b2f85fdaee5f8cf2aa, type: 3}
 --- !u!1 &2489816074568394347
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +261,7 @@ GameObject:
   - component: {fileID: 7253897002499532933}
   - component: {fileID: 9062482290395617279}
   - component: {fileID: 8230304908797412111}
+  - component: {fileID: 5871616075988591452}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -307,6 +327,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toLeft: 0
   force: 1
+--- !u!65 &5871616075988591452
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3083901258563686669}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4943310852060910449
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,6 +360,7 @@ GameObject:
   - component: {fileID: 3402148412711379576}
   - component: {fileID: 1512836994715257918}
   - component: {fileID: 3471883194131641301}
+  - component: {fileID: 5946526316311997146}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -384,6 +426,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toLeft: 1
   force: 1
+--- !u!65 &5946526316311997146
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4943310852060910449}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6180297714197512515
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,8 +612,8 @@ Transform:
   m_GameObject: {fileID: 8477596585107446366}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -4.44, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 90}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 549414775001867494}

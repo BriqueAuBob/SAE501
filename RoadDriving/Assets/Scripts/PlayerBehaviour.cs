@@ -21,18 +21,16 @@ public class PlayerBehaviour : MonoBehaviour
     void Update()
     {
         float horizontal = (-Input.GetAxis("Horizontal")) * speed;
-        float forward = speed;
         horizontal *= Time.deltaTime;
-        forward *= Time.deltaTime;
 
         car.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, horizontal), ForceMode.Impulse);
 
         if (horizontal != 0)
         {
-            car.transform.rotation = Quaternion.Euler(0, horizontal < 0 ? 10f : -10f, 0);
+            car.transform.rotation = Quaternion.Lerp(car.transform.rotation, Quaternion.Euler(0, horizontal < 0 ? 10f : -10f, 0), 0.1f);
         } 
         else {
-            car.transform.rotation = Quaternion.Euler(0, 0, 0);
+            car.transform.rotation = Quaternion.Lerp(car.transform.rotation, Quaternion.Euler(0, 0, 0), 0.1f);
         }
 
         if (Input.GetKeyDown("escape"))

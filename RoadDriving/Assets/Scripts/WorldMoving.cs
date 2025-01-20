@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class WorldMoving : MonoBehaviour
 {
-    public float speed = -10.0f;
+    public static float speed = -10.0f;
 
     void Update()
     {
-        gameObject.transform.Translate(speed * Time.deltaTime, 0, 0);   
+        gameObject.transform.Translate(speed * Time.deltaTime, 0, 0);
+        ScoreCounter.AddScore();
     }
 }

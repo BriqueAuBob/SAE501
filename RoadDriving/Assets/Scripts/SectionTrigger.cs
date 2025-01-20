@@ -22,8 +22,9 @@ public class SectionTrigger : MonoBehaviour
                 sections.RemoveAt(0);
             }
 
+            var newSection = Instantiate(roadSection, new Vector3(95, 0, 0), Quaternion.identity);
             sections.Add(
-                Instantiate(roadSection, new Vector3(50, 0, 0), Quaternion.identity)
+                newSection
             );
         }
     }

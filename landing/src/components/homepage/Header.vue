@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import Progress from "@/components/ui/Progress.vue";
+
+const APP_NAME = import.meta.env.VITE_APP_NAME;
 </script>
 
 <template>
   <header class="container py-8">
-    <h1 class="text-4xl font-bold mb-4">Driving Road</h1>
+    <h1 class="text-4xl font-bold mb-4">{{ APP_NAME }}</h1>
     <div class="grid lg:grid-cols-2 gap-4 items-center">
       <img
-        src="https://placehold.co/1920x1080"
+        src="https://picsum.photos/1920/1080"
         alt="DrivingRoad"
         class="w-full rounded-xl"
       />
