@@ -1118,10 +1118,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4322871356919436626, guid: af51f0972aec32548a48f78911e8963c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322871356919436626, guid: af51f0972aec32548a48f78911e8963c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322871356919436626, guid: af51f0972aec32548a48f78911e8963c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322871356919436626, guid: af51f0972aec32548a48f78911e8963c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -38.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322871356919436626, guid: af51f0972aec32548a48f78911e8963c,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4900273544526658315, guid: af51f0972aec32548a48f78911e8963c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 4900273544526658315, guid: af51f0972aec32548a48f78911e8963c,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5887366077124286685, guid: af51f0972aec32548a48f78911e8963c,
         type: 3}
       propertyPath: m_Name
       value: AnatidaeInterface
+      objectReference: {fileID: 0}
+    - target: {fileID: 6993319419870327522, guid: af51f0972aec32548a48f78911e8963c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 155.53
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

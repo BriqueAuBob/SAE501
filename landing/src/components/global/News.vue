@@ -15,7 +15,10 @@ defineProps({
     <h1 class="font-bold text-lg">{{ news.title }}</h1>
     <h2 class="font-medium text-md text-gray-500">{{ news.description }}</h2>
     <p class="text-sm my-4">{{ news.content }}</p>
-    <div class="text-gray-500 mt-2 text-xs">Publié le {{ news.date }}</div>
+    <div class="text-gray-500 mt-2 text-xs">
+      Publié le {{ new Date(news.date).toLocaleDateString() }} à
+      {{ new Date(news.date).toLocaleTimeString() }}
+    </div>
     <hr class="border-gray-200 my-2" />
   </article>
 </template>
