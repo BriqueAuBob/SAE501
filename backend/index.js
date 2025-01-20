@@ -7,6 +7,10 @@ require("dotenv").config();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 
 generateCrud("members", app, ["name", "role"]);
 generateCrud("news", app, ["title", "description", "content", "date"]);
