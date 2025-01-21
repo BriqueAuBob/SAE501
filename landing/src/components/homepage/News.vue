@@ -2,7 +2,7 @@
 import News from "../global/News.vue";
 import useNews from "@/composables/useNews";
 
-const { data: news } = useNews();
+const { sortedNews: news } = useNews();
 </script>
 
 <template>

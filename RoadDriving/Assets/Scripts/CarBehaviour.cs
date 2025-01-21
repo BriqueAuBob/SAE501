@@ -8,8 +8,13 @@ public class CarBehaviour : MonoBehaviour
 
     void Start()
     {
-        speed = Random.Range(-4.0f, -6.0f);
-        GetComponent<Renderer>().material.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
+        int randomCar = Random.Range(0, transform.childCount); 
+        var car = transform.GetChild(randomCar);
+        car.gameObject.SetActive(true);
+        try {
+            car.GetComponent<Renderer>().material.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
+        } catch (System.Exception e) {
+        }
     }
 
     // Update is called once per frame
