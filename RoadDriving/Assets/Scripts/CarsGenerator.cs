@@ -13,13 +13,13 @@ public class CarsGenerator : MonoBehaviour
     public void GenerateCars() {
         var position = transform.position;
 
-        var z = 200;
+        var z = position.x;
         for(int i = 0; i < 4; i++) {
             GameObject carGroup = carsGroup[Random.Range(0, carsGroup.Count)];
 
             var car = Instantiate(carGroup, new Vector3(z, 1, 0), Quaternion.identity);
 
-            z += 200;
+            z += 50 + Random.Range(0, 10);
         }
     }
 }

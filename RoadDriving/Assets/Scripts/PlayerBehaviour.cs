@@ -20,6 +20,11 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Update()
     {
+        MovementImplementation();
+    }
+
+    void MovementImplementation()
+    {
         float axis = -Input.GetAxis("P1_Horizontal");
         if(axis <= 0.1 && axis >= -0.1)
         {
@@ -37,11 +42,6 @@ public class PlayerBehaviour : MonoBehaviour
         } 
         else {
             car.transform.rotation = Quaternion.Lerp(car.transform.rotation, Quaternion.Euler(0, 0, 0), 0.1f);
-        }
-
-        if (Input.GetKeyDown("escape"))
-        {
-            Cursor.lockState = CursorLockMode.None;
         }
     }
 }
