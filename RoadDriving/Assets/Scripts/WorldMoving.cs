@@ -15,7 +15,13 @@ public class WorldMoving : MonoBehaviour
 
     void Update()
     {
-        BoostImplementation();
+        if (GameBehaviour.isGameStarted)
+        {
+            BoostImplementation();
+        }
+        
+        
+        if (!GameBehaviour.isGameStarted && GameBehaviour.isGameOver) return;
         
         gameObject.transform.Translate(computedSpeed * Time.deltaTime, 0, 0);
         ScoreCounter.AddScore();

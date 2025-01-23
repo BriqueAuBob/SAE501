@@ -6,6 +6,20 @@ public class PlayerBehaviour : MonoBehaviour
 {
     public float speed = 10.0f;
     private GameObject car;
+    private float lastBlinker;
+    private GameObject Left_blinker;
+    private GameObject Right_blinker;
+    public Material bodyMaterial;
+    private Rigidbody rb;
+    
+    private List<Color> COLORS = new List<Color> {
+        new Color(0.2335271f, 0.0f, 0.4716981f),
+        new Color(0f, 0.1643248f, 0.4705881f),
+        new Color(0.4705882f, 0.1949583f, 0f),
+        Color.gray,
+        Color.white,
+        Color.black
+    };
 
     void Start()
     {
@@ -14,12 +28,20 @@ public class PlayerBehaviour : MonoBehaviour
             if (child.name == "Car")
             {
                 car = child.gameObject;
+
+                Left_blinker = car.transform.Find("Left_Blinker").gameObject;
+                Right_blinker = car.transform.Find("Right_Blinker").gameObject;
+
+                bodyMaterial.SetColor("_BaseColor", COLORS[Random.Range(0, COLORS.Count)]);
+
+                rb = car.GetComponent<Rigidbody>();
             }
         }
     }
 
     void Update()
     {
+        if (!GameBehaviour.isGameStarted) return;
         MovementImplementation();
     }
 
@@ -34,14 +56,35 @@ public class PlayerBehaviour : MonoBehaviour
         float horizontal = axis * speed;
         horizontal *= Time.deltaTime;
 
-        car.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, horizontal), ForceMode.Impulse);
+        rb.AddForce(new Vector3(0, 0, horizontal), ForceMode.Impulse);
 
-        if (horizontal != 0)
-        {
+        if (horizontal != 0) {
             car.transform.rotation = Quaternion.Lerp(car.transform.rotation, Quaternion.Euler(0, horizontal < 0 ? 10f : -10f, 0), 0.1f);
-        } 
-        else {
+        } else {
             car.transform.rotation = Quaternion.Lerp(car.transform.rotation, Quaternion.Euler(0, 0, 0), 0.1f);
         }
+
+        // Blinkers logic
+        if (lastBlinker + 0.2f < Time.time) {
+            if (axis > 0) {
+                Right_blinker.SetActive(false);
+                MakeBlinkerBlinkering(Left_blinker);
+            } else if (axis < 0) {
+                Left_blinker.SetActive(false);
+                MakeBlinkerBlinkering(Right_blinker);
+            } else {
+                if(Left_blinker.activeSelf) {
+                    Left_blinker.SetActive(false);
+                }
+                if(Right_blinker.activeSelf) {
+                    Right_blinker.SetActive(false);
+                }
+            }
+        }
+    }
+
+    private void MakeBlinkerBlinkering(GameObject blinker) {
+        blinker.SetActive(!blinker.activeSelf);
+        lastBlinker = Time.time;
     }
 }

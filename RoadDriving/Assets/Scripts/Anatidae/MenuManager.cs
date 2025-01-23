@@ -42,7 +42,6 @@ public class MenuManager : MonoBehaviour
         try {
             BackToMenu();
         } catch {
-            Debug.Log("BackToMenu not found");
             string url = "http://localhost:3000";
             Application.ExternalEval("window.open('" + url + "','_self')");
         }

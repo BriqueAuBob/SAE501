@@ -12,7 +12,7 @@ namespace Anatidae {
         // Changez cette variable par le nom de votre jeu
         // Ce nom sera le même que le nom du dossier contenant votre build, il ne doit donc pas contenir de caractères spéciaux ni d'espaces
         // Cette variable est utilisée pour stocker les highscores sur le serveur !
-        const string GameName = "Votre_nom_de_jeu";
+        const string GameName = "endless_overdrive";
         // Changez cette variable pour définir quand est-ce qu'un score est considéré comme un highscore (top 10 par défaut)
         const int NumHighscores = 10;
 
@@ -113,6 +113,7 @@ namespace Anatidae {
                 string data = request.downloadHandler.text;
                 try {
                     HighscoreData highscoreData = JsonUtility.FromJson<HighscoreData>(data);
+                    Debug.Log(highscoreData);
                     Highscores = highscoreData.highscores;
                     HasFetchedHighscores = true;
                     Debug.Log("HighscoreManager: Highscores fetched!");

@@ -6,7 +6,7 @@ using TMPro;
 public class ScoreCounter : MonoBehaviour
 {
     public GameObject textScore;
-    private static float score = 0;
+    private static int score = 0;
     private static int lastUpdate = 0;
 
     public static void AddScore()
@@ -27,5 +27,10 @@ public class ScoreCounter : MonoBehaviour
     void Update()
     {
         textScore.GetComponent<TextMeshProUGUI>().text = score.ToString();
+    }
+    
+    public static int GetScore()
+    {
+        return score;
     }
 }
