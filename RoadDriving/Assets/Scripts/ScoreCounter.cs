@@ -11,6 +11,7 @@ public class ScoreCounter : MonoBehaviour
 
     public static void AddScore()
     {
+        if(!GameBehaviour.isGameStarted) return;
         if (Time.time - lastUpdate < 1f)
         {
             return;

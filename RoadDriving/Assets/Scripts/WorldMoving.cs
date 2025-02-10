@@ -7,6 +7,7 @@ public class WorldMoving : MonoBehaviour
     public static float speed = -10.0f;
     private static float computedSpeed;
     private float boostingAt = 0;
+    public static float GetSpeed() => computedSpeed;
     
     void Start()
     {
@@ -14,17 +15,20 @@ public class WorldMoving : MonoBehaviour
     }
 
     void Update()
-    {
-        if (GameBehaviour.isGameStarted)
-        {
-            BoostImplementation();
-        }
-        
-        
+    {   
         if (!GameBehaviour.isGameStarted && GameBehaviour.isGameOver) return;
         
         gameObject.transform.Translate(computedSpeed * Time.deltaTime, 0, 0);
         ScoreCounter.AddScore();
+
+        speed = -10.0f - (ScoreCounter.GetScore() / 5);
+
+        Debug.Log("speed: " + speed);
+
+        if (GameBehaviour.isGameStarted)
+        {
+            BoostImplementation();
+        }        
     }
     
     void BoostImplementation() 
@@ -32,11 +36,13 @@ public class WorldMoving : MonoBehaviour
         if (Input.GetButtonDown("P1_B1")) {
             computedSpeed = speed * 2;
             boostingAt = Time.time;
+            GameBehaviour.isBoosting = true;
         }
 
         if (Time.time - boostingAt > 3 && boostingAt != 0) {
             computedSpeed = speed;
             boostingAt = 0;
+            GameBehaviour.isBoosting = false;
         }
     }
 }

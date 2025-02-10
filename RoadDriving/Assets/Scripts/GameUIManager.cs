@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,19 +7,22 @@ using UnityEngine.UI;
 public class GameUIManager : MonoBehaviour
 {
     public GameObject startPanel;
-    private List<GameObject> menuButtons;
+    public GameObject gameOverPanel;
+    public GameObject logo;
+    public GameObject boostPanel;
+    private Dictionary<string, List<GameObject>> panels = new Dictionary<string, List<GameObject>>();
     private int selectedButton = 0;
     private float lastTime = 0;
+    private string currentMenu = "startPanel";
     
     void Start()
     {
         startPanel.SetActive(true);
+        boostPanel.SetActive(false);
+
+        getPanelButtons("startPanel", startPanel);
+        getPanelButtons("gameOverPanel", gameOverPanel);
         
-        menuButtons = new List<GameObject>();
-        for (int i = 0; i < startPanel.transform.childCount; i++)
-        {
-            menuButtons.Add(startPanel.transform.GetChild(i).gameObject);
-        }
         SelectButton(0);
     }
 
@@ -27,41 +31,78 @@ public class GameUIManager : MonoBehaviour
         if (GameBehaviour.isGameStarted || GameBehaviour.isGameOver)
         {
             startPanel.SetActive(false);
+            logo.transform.localScale = Vector3.Lerp(logo.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 5);
+            logo.transform.position = Vector3.Lerp(logo.transform.position, new Vector3(logo.transform.position.x, 1000f, logo.transform.position.z), Time.deltaTime * 5);
         }
         else
         {
-            MenuButtonSelector();
-        }    
+            MenuButtonSelector("startPanel");
+        }
+
+        if (GameBehaviour.isGameOver && GameBehaviour.shouldDisplayGameOver)
+        {
+            currentMenu = "gameOverPanel";
+            var shouldSelect0 = !gameOverPanel.activeSelf;
+            gameOverPanel.SetActive(true);
+            MenuButtonSelector("gameOverPanel");
+            if (shouldSelect0)
+            {
+                SelectButton(0);
+            }
+        }
+        
+        if(GameBehaviour.isBoosting && GameBehaviour.isGameStarted)
+        {
+            boostPanel.SetActive(true);
+        }
+        else
+        {
+            boostPanel.SetActive(false);
+        }
     }
 
-    private void MenuButtonSelector()
+    private void MenuButtonSelector(string panelName)
     {
         var axis = Input.GetAxis("P1_Vertical");
 
-        if (lastTime + 0.2f > Time.time) return;
+        if (lastTime + 0.4f > Time.time) return;
         
+        var buttons = panels[panelName];
         if (axis > 0)
         {
-            SelectButton(selectedButton == 0 ? menuButtons.Count - 1 : selectedButton - 1);
+            SelectButton(selectedButton == 0 ? buttons.Count - 1 : selectedButton - 1);
             lastTime = Time.time;
         }
         else if (axis < 0)
         {
-            SelectButton(selectedButton == menuButtons.Count - 1 ? 0 : selectedButton + 1);
+            SelectButton(selectedButton == buttons.Count - 1 ? 0 : selectedButton + 1);
             lastTime = Time.time;
         }
         
         if (Input.GetButtonDown("P1_B2"))
         {
-            menuButtons[selectedButton].GetComponent<Button>().onClick.Invoke();
+            buttons[selectedButton].GetComponent<Button>().onClick.Invoke();
             lastTime = Time.time;
         }
     }
 
     private void SelectButton(int index)
     {
-        menuButtons[selectedButton].transform.localScale = new Vector3(1, 1, 1);
+        var buttons = panels[currentMenu];
+        buttons[selectedButton].transform.localScale = new Vector3(1, 1, 1);
+        buttons[selectedButton].GetComponent<Button>().image.color = Color.gray;
         selectedButton = index;
-        menuButtons[selectedButton].transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+        buttons[selectedButton].transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+        buttons[selectedButton].GetComponent<Button>().image.color = new Color(1, 1, 1, 1);
+    }
+
+    private void getPanelButtons(string panelName, GameObject panel)
+    {
+        var buttons = new List<GameObject>();
+        for (int i = 0; i < panel.transform.childCount; i++)
+        {
+            buttons.Add(panel.transform.GetChild(i).gameObject);
+        }
+        panels.Add(panelName, buttons);
     }
 }

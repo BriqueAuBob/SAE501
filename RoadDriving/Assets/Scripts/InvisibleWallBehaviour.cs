@@ -9,6 +9,7 @@ public class InvisibleWallBehaviour : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if(!GameBehaviour.isGameStarted) return;
         if (other.gameObject.CompareTag("Player"))
         {
             var currentRotationDirection = other.gameObject.transform.rotation;

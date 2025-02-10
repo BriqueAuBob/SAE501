@@ -54,7 +54,9 @@ public class CarBehaviour : MonoBehaviour
             var score = ScoreCounter.GetScore();
             if (Anatidae.HighscoreManager.IsHighscore(score))
             {
-                if (Anatidae.HighscoreManager.PlayerName == null) {
+                if (Anatidae.HighscoreManager.PlayerName == null)
+                {
+                    GameBehaviour.shouldDisplayGameOver = false;
                     Anatidae.HighscoreManager.ShowHighscoreInput(score);
                 }
                 else {

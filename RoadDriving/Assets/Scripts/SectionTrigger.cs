@@ -18,6 +18,16 @@ public class SectionTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Trigger"))
         {
             if(sections.Count >= 2) {
+                var player = GameObject.Find("Player");
+                var cars = GameObject.FindGameObjectsWithTag("Car");
+                foreach (var car in cars)
+                {
+                    if (car.transform.position.x < player.transform.position.x)
+                    {
+                        Destroy(car);
+                    }
+                }
+
                 Destroy(sections[0]);
                 sections.RemoveAt(0);
             }

@@ -104,6 +104,7 @@ namespace Anatidae {
             UnityWebRequest request = UnityWebRequest.Get("http://localhost:3000/api/?game=" + GameName);
             yield return request.SendWebRequest();
 
+            Debug.Log(request);
             if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
             {
                 Debug.LogError(request.error);
@@ -113,9 +114,9 @@ namespace Anatidae {
                 string data = request.downloadHandler.text;
                 try {
                     HighscoreData highscoreData = JsonUtility.FromJson<HighscoreData>(data);
-                    Debug.Log(highscoreData);
                     Highscores = highscoreData.highscores;
                     HasFetchedHighscores = true;
+                    Debug.Log(highscoreData);
                     Debug.Log("HighscoreManager: Highscores fetched!");
                 } catch (Exception e) {
                     Debug.LogError(e);
@@ -139,6 +140,8 @@ namespace Anatidae {
             yield return request.SendWebRequest();
             if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
                 Debug.LogError(request.error);
+            
+            GameBehaviour.shouldDisplayGameOver = true;
 
             yield return FetchHighscores();
         }

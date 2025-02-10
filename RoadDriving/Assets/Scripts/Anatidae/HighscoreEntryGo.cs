@@ -11,6 +11,7 @@ namespace Anatidae {
 
         public void SetData(HighscoreManager.HighscoreEntry entry)
         {
+            Debug.Log(entry.name);
             nameText.text = entry.name;
             scoreText.text = entry.score.ToString();
         }

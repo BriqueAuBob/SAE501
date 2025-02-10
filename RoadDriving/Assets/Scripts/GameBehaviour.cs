@@ -7,6 +7,8 @@ public class GameBehaviour : MonoBehaviour
 {
     public static bool isGameStarted = false;
     public static bool isGameOver = false;
+    public static bool shouldDisplayGameOver = true;
+    public static bool isBoosting = false;
 
     public static void StartGame()
     {
@@ -26,7 +28,9 @@ public class GameBehaviour : MonoBehaviour
     
     public static void RestartGame()
     {
-        //UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-        //ScoreCounter.ResetScore();
+        isGameStarted = true;
+        isGameOver = false;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        ScoreCounter.ResetScore();
     }
 }
