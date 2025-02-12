@@ -9,6 +9,7 @@ public class PlayerBehaviour : MonoBehaviour
     private float lastBlinker;
     private GameObject Left_blinker;
     private GameObject Right_blinker;
+    private GameObject Smoke;
     public Material bodyMaterial;
     private Rigidbody rb;
     
@@ -31,6 +32,7 @@ public class PlayerBehaviour : MonoBehaviour
 
                 Left_blinker = car.transform.Find("Left_Blinker").gameObject;
                 Right_blinker = car.transform.Find("Right_Blinker").gameObject;
+                Smoke = car.transform.Find("Smoke").gameObject;
 
                 bodyMaterial.SetColor("_BaseColor", COLORS[Random.Range(0, COLORS.Count)]);
 
@@ -59,9 +61,9 @@ public class PlayerBehaviour : MonoBehaviour
         rb.AddForce(new Vector3(0, 0, horizontal), ForceMode.Impulse);
 
         if (horizontal != 0) {
-            car.transform.rotation = Quaternion.Lerp(car.transform.rotation, Quaternion.Euler(0, horizontal < 0 ? 10f : -10f, 0), 0.1f);
+            car.transform.rotation = Quaternion.Lerp(car.transform.rotation, Quaternion.Euler(0, horizontal < 0 ? 10f : -10f, 0), Time.deltaTime * 5);
         } else {
-            car.transform.rotation = Quaternion.Lerp(car.transform.rotation, Quaternion.Euler(0, 0, 0), 0.1f);
+            car.transform.rotation = Quaternion.Lerp(car.transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * 5);
         }
 
         // Blinkers logic

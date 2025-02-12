@@ -22,7 +22,7 @@ public class SectionTrigger : MonoBehaviour
                 var cars = GameObject.FindGameObjectsWithTag("Car");
                 foreach (var car in cars)
                 {
-                    if (car.transform.position.x < player.transform.position.x)
+                    if (car.transform.position.x < player.transform.position.x - 10)
                     {
                         Destroy(car);
                     }
@@ -32,7 +32,11 @@ public class SectionTrigger : MonoBehaviour
                 sections.RemoveAt(0);
             }
 
-            var newSection = Instantiate(roadSection, new Vector3(95, 0, 0), Quaternion.identity);
+            // calculate position of the new section by using the last section position
+            var lastSection = sections[sections.Count - 1];
+            var position = lastSection.transform.position + new Vector3(100, 0, 0);
+
+            var newSection = Instantiate(roadSection, position, Quaternion.identity);
             sections.Add(
                 newSection
             );

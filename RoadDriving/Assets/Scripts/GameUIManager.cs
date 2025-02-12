@@ -9,21 +9,27 @@ public class GameUIManager : MonoBehaviour
     public GameObject startPanel;
     public GameObject gameOverPanel;
     public GameObject logo;
-    public GameObject boostPanel;
+    public Image boostPanel;
     private Dictionary<string, List<GameObject>> panels = new Dictionary<string, List<GameObject>>();
     private int selectedButton = 0;
     private float lastTime = 0;
     private string currentMenu = "startPanel";
+
+    private float logoY = 0;
+    private float logoScale = 0;
     
     void Start()
     {
         startPanel.SetActive(true);
-        boostPanel.SetActive(false);
+        boostPanel.color = new Color(boostPanel.color.r, boostPanel.color.g, boostPanel.color.b, 0);
 
         getPanelButtons("startPanel", startPanel);
         getPanelButtons("gameOverPanel", gameOverPanel);
         
         SelectButton(0);
+
+        logoY = logo.transform.position.y;
+        logoScale = logo.transform.localScale.y;
     }
 
     void Update()
@@ -49,15 +55,18 @@ public class GameUIManager : MonoBehaviour
             {
                 SelectButton(0);
             }
+
+            logo.transform.localScale = Vector3.Lerp(logo.transform.localScale, new Vector3(logoScale, logoScale, logoScale), Time.deltaTime * 5);
+            logo.transform.position = Vector3.Lerp(logo.transform.position, new Vector3(logo.transform.position.x, logoY, logo.transform.position.z), Time.deltaTime * 5);
         }
         
         if(GameBehaviour.isBoosting && GameBehaviour.isGameStarted)
         {
-            boostPanel.SetActive(true);
+            boostPanel.color = new Color(boostPanel.color.r, boostPanel.color.g, boostPanel.color.b, Mathf.Lerp(boostPanel.color.a, 1, Time.deltaTime * 5));
         }
         else
         {
-            boostPanel.SetActive(false);
+            boostPanel.color = new Color(boostPanel.color.r, boostPanel.color.g, boostPanel.color.b, Mathf.Lerp(boostPanel.color.a, 0, Time.deltaTime * 5));
         }
     }
 
