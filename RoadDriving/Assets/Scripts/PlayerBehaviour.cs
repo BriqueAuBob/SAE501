@@ -10,6 +10,7 @@ public class PlayerBehaviour : MonoBehaviour
     private GameObject Left_blinker;
     private GameObject Right_blinker;
     private GameObject Smoke;
+    public List<GameObject> wheelSmokeParticles;
     public Material bodyMaterial;
     private Rigidbody rb;
     
@@ -64,6 +65,21 @@ public class PlayerBehaviour : MonoBehaviour
             car.transform.rotation = Quaternion.Lerp(car.transform.rotation, Quaternion.Euler(0, horizontal < 0 ? 10f : -10f, 0), Time.deltaTime * 5);
         } else {
             car.transform.rotation = Quaternion.Lerp(car.transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * 5);
+        }
+        
+        // Smoke wheels logic
+        if (Mathf.Abs(horizontal) > 0) {
+            foreach (GameObject wheelSmoke in wheelSmokeParticles) {
+                var ps = wheelSmoke.GetComponent<ParticleSystem>();
+                var emission = ps.emission;
+                emission.enabled = true;
+            }
+        } else {
+            foreach (GameObject wheelSmoke in wheelSmokeParticles) {
+                var ps = wheelSmoke.GetComponent<ParticleSystem>();
+                var emission = ps.emission;
+                emission.enabled = false;
+            }
         }
 
         // Blinkers logic

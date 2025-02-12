@@ -18,6 +18,7 @@ public class ScoreCounter : MonoBehaviour
         }
         lastUpdate = (int)Time.time;
         score++;
+        if(GameBehaviour.isBoosting) score++;
     }
 
     public static void ResetScore()

@@ -28,6 +28,7 @@ public class GameBehaviour : MonoBehaviour
     
     public static void RestartGame()
     {
+        isBoosting = false;
         isGameStarted = true;
         isGameOver = false;
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);

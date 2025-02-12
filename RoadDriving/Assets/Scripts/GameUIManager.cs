@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameUIManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameUIManager : MonoBehaviour
     public GameObject gameOverPanel;
     public GameObject logo;
     public Image boostPanel;
+    public GameObject speed;
     private Dictionary<string, List<GameObject>> panels = new Dictionary<string, List<GameObject>>();
     private int selectedButton = 0;
     private float lastTime = 0;
@@ -67,6 +69,22 @@ public class GameUIManager : MonoBehaviour
         else
         {
             boostPanel.color = new Color(boostPanel.color.r, boostPanel.color.g, boostPanel.color.b, Mathf.Lerp(boostPanel.color.a, 0, Time.deltaTime * 5));
+        }
+
+        if(GameBehaviour.isGameStarted && !GameBehaviour.isGameOver)
+        {
+            speed.SetActive(true);
+
+            var text = speed.GetComponent<TextMeshProUGUI>().text;
+            var currentSpeedText = text.Substring(0, text.IndexOf(" "));
+            var speedText = 50 + Math.Abs(WorldMoving.GetSpeed());
+            var lerpSpeed = Math.Round(Mathf.Lerp(int.Parse(currentSpeedText), speedText, Time.deltaTime * 10));
+
+            speed.GetComponent<TextMeshProUGUI>().text = lerpSpeed.ToString() + " km/h";
+        }
+        else
+        {
+            speed.SetActive(false);
         }
     }
 
