@@ -10,7 +10,7 @@ const APP_NAME = import.meta.env.VITE_APP_NAME;
     <div class="grid lg:grid-cols-2 gap-4 items-center">
       <img src="/thumbnail.png" alt="DrivingRoad" class="w-full rounded-xl" />
       <div class="w-full">
-        <Progress :value="1" :max="100" label="Avancée du projet" />
+        <Progress :value="70" :max="100" label="Avancée du projet" />
         <p class="text-md mt-2 leading-snug text-left">
           Ex adipisicing aliquip minim minim ex magna reprehenderit officia
           dolor. Exercitation est velit non qui. Occaecat aliquip fugiat anim
