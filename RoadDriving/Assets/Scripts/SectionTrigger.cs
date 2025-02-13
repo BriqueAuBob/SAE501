@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class SectionTrigger : MonoBehaviour
 {
-    public GameObject roadSection;
-
+    public List<GameObject> roadPrefabs;
+    private GameObject roadSection;
     private List<GameObject> sections = new List<GameObject>();
 
     private void Start()
     {
+        var prefab = roadPrefabs[Random.Range(0, roadPrefabs.Count)];
+        var obj = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
+        obj.name = "Road_Section";
         sections.Add(GameObject.Find("Road_Section"));
+
+        roadSection = prefab;
     }
 
     private void OnTriggerEnter(Collider other)

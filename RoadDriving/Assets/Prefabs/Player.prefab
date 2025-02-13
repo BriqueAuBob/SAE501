@@ -5184,7 +5184,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8161926168613572617
 Transform:
   m_ObjectHideFlags: 0
@@ -6032,7 +6032,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
   EmissionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2
@@ -10250,7 +10250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2103241673187433323
 Transform:
   m_ObjectHideFlags: 0
@@ -11098,7 +11098,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
   EmissionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2
@@ -15109,7 +15109,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  wheelSmokeParticles: []
+  wheelSmokeParticles:
+  - {fileID: 5447940192680587673}
+  - {fileID: 4812139969870312999}
   bodyMaterial: {fileID: 2100000, guid: 707cca2aff06b47d08cf7acceae08dfd, type: 2}
 --- !u!1 &8126661349783707075
 GameObject:
@@ -15295,8 +15297,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 538d8cfaaf1fa4aa6a9e804822f9501e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadSection: {fileID: 2109050525313267055, guid: 18aaa80b1c0cd49e28464f733eb6934d,
-    type: 3}
+  roadPrefabs:
+  - {fileID: 971751311658249408, guid: 66d65212aa83b4d1daa1c335b3f14987, type: 3}
+  - {fileID: 971751311658249408, guid: fdaca0d1bc6344b38bf9262681125ebb, type: 3}
+  - {fileID: 3947243870156817815, guid: be1275cd4c99c4affb558d4a3b52c542, type: 3}
+  - {fileID: 971751311658249408, guid: c33f87f0e947447b1acb17de1a5daa2b, type: 3}
 --- !u!1001 &7249569870757301022
 PrefabInstance:
   m_ObjectHideFlags: 0

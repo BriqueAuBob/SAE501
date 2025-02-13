@@ -19,6 +19,9 @@ public class GameUIManager : MonoBehaviour
 
     private float logoY = 0;
     private float logoScale = 0;
+
+    public AudioSource buttonSelectAudio;
+    public AudioSource buttonClickAudio;
     
     void Start()
     {
@@ -109,6 +112,7 @@ public class GameUIManager : MonoBehaviour
         if (Input.GetButtonDown("P1_B2"))
         {
             buttons[selectedButton].GetComponent<Button>().onClick.Invoke();
+            buttonClickAudio.Play();
             lastTime = Time.time;
         }
     }
@@ -121,6 +125,7 @@ public class GameUIManager : MonoBehaviour
         selectedButton = index;
         buttons[selectedButton].transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
         buttons[selectedButton].GetComponent<Button>().image.color = new Color(1, 1, 1, 1);
+        buttonSelectAudio.Play();
     }
 
     private void getPanelButtons(string panelName, GameObject panel)

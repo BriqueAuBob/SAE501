@@ -28,6 +28,7 @@ public class ScoreCounter : MonoBehaviour
 
     void Update()
     {
+        textScore.SetActive(GameBehaviour.isGameStarted);
         textScore.GetComponent<TextMeshProUGUI>().text = score.ToString();
     }
     

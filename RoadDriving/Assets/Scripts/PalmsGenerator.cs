@@ -6,6 +6,10 @@ public class PalmsGenerator : MonoBehaviour
 {
     public List<GameObject> palms = new List<GameObject>();
     private List<GameObject> sand = new List<GameObject>();
+    public float minScale = 1.0f;
+    public float maxScale = 3.0f;
+    public float zDist = 30.0f;
+    public float xDist = 70.0f;
     
     void Start()
     {
@@ -36,9 +40,9 @@ public class PalmsGenerator : MonoBehaviour
         for(int i = 0; i < count; i++)
         {
             var palm = palms[Random.Range(0, palms.Count)];
-            var x = Random.Range(-70, 70);
-            var z = Random.Range(-60, 60);
-            var scale = Random.Range(1, 3);
+            var x = Random.Range(-xDist, xDist);
+            var z = Random.Range(-zDist, zDist);
+            var scale = Random.Range(minScale, maxScale);
 
             var palmInstance = Instantiate(palm, new Vector3(position.x + x, position.y, position.z + z), Quaternion.identity);
             palmInstance.transform.localScale = new Vector3(scale, scale, scale);

@@ -8,11 +8,7 @@ const APP_NAME = import.meta.env.VITE_APP_NAME;
   <header class="container py-8">
     <h1 class="text-4xl font-bold mb-4">{{ APP_NAME }}</h1>
     <div class="grid lg:grid-cols-2 gap-4 items-center">
-      <img
-        src="https://picsum.photos/1920/1080"
-        alt="DrivingRoad"
-        class="w-full rounded-xl"
-      />
+      <img src="/thumbnail.png" alt="DrivingRoad" class="w-full rounded-xl" />
       <div class="w-full">
         <Progress :value="1" :max="100" label="Avancée du projet" />
         <p class="text-md mt-2 leading-snug text-left">
