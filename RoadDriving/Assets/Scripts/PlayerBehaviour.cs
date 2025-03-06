@@ -13,6 +13,7 @@ public class PlayerBehaviour : MonoBehaviour
     public List<GameObject> wheelSmokeParticles;
     public Material bodyMaterial;
     private Rigidbody rb;
+    private ParticleSystem Nitro;
     
     private List<Color> COLORS = new List<Color> {
         new Color(0.2335271f, 0.0f, 0.4716981f),
@@ -34,6 +35,8 @@ public class PlayerBehaviour : MonoBehaviour
                 Left_blinker = car.transform.Find("Left_Blinker").gameObject;
                 Right_blinker = car.transform.Find("Right_Blinker").gameObject;
                 Smoke = car.transform.Find("Smoke").gameObject;
+                var nitroObject = car.transform.Find("Nitro").gameObject;
+                Nitro = nitroObject.GetComponent<ParticleSystem>();
 
                 bodyMaterial.SetColor("_BaseColor", COLORS[Random.Range(0, COLORS.Count)]);
 
@@ -99,6 +102,10 @@ public class PlayerBehaviour : MonoBehaviour
                 }
             }
         }
+        
+        // Nitro logic
+        var nitroEmission = Nitro.emission;
+        nitroEmission.enabled = GameBehaviour.isBoosting;
     }
 
     private void MakeBlinkerBlinkering(GameObject blinker) {

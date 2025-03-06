@@ -8,6 +8,7 @@ public class WorldMoving : MonoBehaviour
     private static float computedSpeed;
     private float boostingAt = 0;
     public static float GetSpeed() => computedSpeed;
+    private float defaultFov = 34;
     
     void Start()
     {
@@ -43,6 +44,11 @@ public class WorldMoving : MonoBehaviour
             computedSpeed = speed;
             boostingAt = 0;
             GameBehaviour.isBoosting = false;
+        }
+
+        if (Camera.main)
+        {
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, defaultFov + (GameBehaviour.isBoosting ? 10 : 0), Time.deltaTime * 2);
         }
     }
 }

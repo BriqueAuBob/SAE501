@@ -19,7 +19,7 @@ public class CarsGenerator : MonoBehaviour
         var z = position.x + 50;
         var defaultZ = z;
         for(int i = 0; i < 5; i++) {
-            if(z - defaultZ > 100) {
+            if(z - defaultZ > 95) {
                 break;
             }
 
