@@ -14,6 +14,7 @@ public class PlayerBehaviour : MonoBehaviour
     public Material bodyMaterial;
     private Rigidbody rb;
     private ParticleSystem Nitro;
+    private AudioSource carSound;
     
     private List<Color> COLORS = new List<Color> {
         new Color(0.2335271f, 0.0f, 0.4716981f),
@@ -37,6 +38,7 @@ public class PlayerBehaviour : MonoBehaviour
                 Smoke = car.transform.Find("Smoke").gameObject;
                 var nitroObject = car.transform.Find("Nitro").gameObject;
                 Nitro = nitroObject.GetComponent<ParticleSystem>();
+                carSound = car.transform.Find("CarGO").gameObject.transform.Find("EngineSound").GetComponent<AudioSource>();
 
                 bodyMaterial.SetColor("_BaseColor", COLORS[Random.Range(0, COLORS.Count)]);
 
@@ -106,6 +108,7 @@ public class PlayerBehaviour : MonoBehaviour
         // Nitro logic
         var nitroEmission = Nitro.emission;
         nitroEmission.enabled = GameBehaviour.isBoosting;
+        carSound.pitch = Mathf.Lerp(carSound.pitch, GameBehaviour.isBoosting ? 1.5f : 1f, Time.deltaTime * 2);
     }
 
     private void MakeBlinkerBlinkering(GameObject blinker) {
